@@ -1,15 +1,32 @@
-Source: template-repository
-Section: unknown
+Source: golang-go-patricia
+Section: golang
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: Debian Go Packaging Team <team+pkg-go@tracker.debian.org>
+Uploaders: Tim Potter <tpot@hpe.com>
+Build-Depends: debhelper-compat (= 13),
+               dh-golang,
+               golang-any
+Standards-Version: 4.6.0
+Homepage: https://github.com/tchap/go-patricia
+Vcs-Git: https://salsa.debian.org/go-team/packages/golang-go-patricia.git
+Vcs-Browser: https://salsa.debian.org/go-team/packages/golang-go-patricia
+Rules-Requires-Root: no
+Testsuite: autopkgtest-pkg-go
+XS-Go-Import-Path: github.com/tchap/go-patricia
 
-Package: template-repository
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Package: golang-github-tchap-go-patricia-dev
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Replaces: golang-go-patricia-dev (<< 2.2.0-2)
+Breaks: golang-go-patricia-dev (<< 2.2.0-2)
+Provides: golang-go-patricia-dev
+Description: generic patricia trie (also called radix tree)
+ The patricia trie as implemented in this library enables fast visiting of items
+ in some particular ways:
+ .
+  1. visit all items saved in the tree,
+  2. visit all items matching particular prefix (visit subtree), or
+  3. given a string, visit all items matching some prefix of that string.
+ .
+ This package contains the source.
